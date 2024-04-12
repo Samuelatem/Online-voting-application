@@ -1,6 +1,6 @@
 import sqlite3
 
-from base_model import AbstractBaseModel
+from models.base_model import AbstractBaseModel
 
 class Candidate(AbstractBaseModel):
     TABLE_NAME = "candidate"
