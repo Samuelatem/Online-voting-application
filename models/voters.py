@@ -1,6 +1,6 @@
 import sqlite3
 
-from base_model import AbstractBaseModel
+from .base_model import AbstractBaseModel
 
 class voters(AbstractBaseModel):
     TABLE_NAME = "voters"
