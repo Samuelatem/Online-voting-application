@@ -1,0 +1,21 @@
+{
+	"id": "d09ca439-b799-49f0-9e1e-136a6bb49b50",
+	"name": "online voting system",
+	"timestamp": "2024-04-17T00:49:33.842Z",
+	"collection_id": "0-a095ce16-6e5f-4efa-a1d4-86602382ecb0",
+	"folder_id": 0,
+	"environment_id": "0",
+	"totalPass": 0,
+	"totalFail": 0,
+	"results": [],
+	"count": 1,
+	"totalTime": 0,
+	"collection": {
+		"requests": [
+			{
+				"id": "b87cc1dd-c622-4671-9300-7c30a93700d7",
+				"method": "GET"
+			}
+		]
+	}
+}
