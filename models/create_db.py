@@ -6,9 +6,9 @@ PATH_TO_DB = os.path.join(
     "db.sqlite"
 )
 
-create_candidate_table_query = "CREATE TABLE candidate (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, session integer, position interger, max_vote interger, picture varchar(255) not null,  FOREIGN KEY(session) REFERENCES session(id))";
+create_candidate_table_query = "CREATE TABLE candidate(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, session integer, position interger, max_vote interger, picture varchar(255) not null,  FOREIGN KEY(session) REFERENCES session(id))"
 
-create_session_table_query = "CREATE TABLE session(id INTEGER PRIMARY KEY AUTOINCREMENT, start_date DATETIME, end_date DATETIME)";
+create_session_table_query = "CREATE TABLE session(id INTEGER PRIMARY KEY AUTOINCREMENT, start_date DATETIME, end_date DATETIME)"
 
 
 

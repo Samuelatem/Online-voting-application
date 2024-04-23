@@ -1,28 +1,36 @@
-from models.voters import voters
+from models.voters import Voters  # Corrected class name to follow PEP 8 conventions
 
 def get_all_voters():
-    voters = voters.read()
-
-    return [ voters.toJSON() for voters in voters ]
+    # Renamed the parameter to avoid shadowing the import statement
+    voters_list = Voters.read()  # Corrected method call to match the method name
+    
+    return [voters.toJSON() for voters in voters_list]
 
 def get_voters_with_id(id):
-    return voters.read(id).toJSON()
+    voter = Voters.read(id)  # Corrected method call to match the method name
+    if voter:
+        return voter.toJSON()  # Added check if voter is not None before calling toJSON
+    else:
+        return None  # Return None if voter with given ID is not found
 
 def save_voters(name, id=None):
-    if id != None:
-        # get subject with id
-        voters = get_voters_with_id(id)
-        voters.name = name
-
+    if id is not None:
+        voter = Voters.read(id)  # Corrected method call to match the method name
+        if voter:
+            voter.name = name
+        else:
+            return None  # Return None if voter with given ID is not found
     else:
-        voters = voters(name=name)
+        voter = Voters(name=name)  # Corrected class instantiation to match the class name
     
-    voters.save()
+    voter.save()
 
-    return voters.toJSON()
+    return voter.toJSON()
 
 def delete_voters(id):
-    voters = get_voters_with_id(id)
-    voters.delete()
-
-    return voters.toJSON()
+    voter = Voters.read(id)  # Corrected method call to match the method name
+    if voter:
+        voter.delete()
+        return voter.toJSON()
+    else:
+        return None  # Return None if voter with given ID is not found

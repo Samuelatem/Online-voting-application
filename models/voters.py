@@ -1,61 +1,51 @@
 import sqlite3
+import os
 
 from .base_model import AbstractBaseModel
 
-class voters(AbstractBaseModel):
+PATH_TO_DB = os.path.join(os.path.dirname(__file__), "db.sqlite")
+
+class Voters(AbstractBaseModel):
     TABLE_NAME = "voters"
 
-    def __init__(self, id=None, candidate_id=None) -> None:
+    def __init__(self, id=None, candidate_id=None):
         self.id = id
         self.candidate_id = candidate_id
       
     def save(self):
         if self.id:
-            query = f"UPDATE {self.__class__.TABLE_NAME} SET candidate_id=? WHERE id=?"
-            
-            with sqlite3.connect("db.sqlite") as connection:
-                cursor = connection.cursor()
-                cursor.execute(query, (self.id, self.candidate_id))
+            query = f"UPDATE {self.TABLE_NAME} SET candidate_id=? WHERE id=?"
+            params = (self.candidate_id, self.id)
         else:
-            # save into the database
-            query = f"INSERT INTO {self.__class__.TABLE_NAME} (candidate_id) VALUES(?)"
-            with sqlite3.connect("db.sqlite") as connection:
-                cursor = connection.cursor()
-                cursor.execute(query, (self.candidate_id))
+            query = f"INSERT INTO {self.TABLE_NAME} (candidate_id) VALUES(?)"
+            params = (self.candidate_id,)
+        
+        with sqlite3.connect(PATH_TO_DB) as connection:
+            cursor = connection.cursor()
+            cursor.execute(query, params)
+            if not self.id:
+                self.id = cursor.lastrowid
 
-                new_instance_id = cursor.execute(f"SELECT MAX(id) FROM {self.__class__.TABLE_NAME}").fetchone()[0]
-
-                self.id = new_instance_id
-
-    def read(id=None):
-        with sqlite3.connect("db.sqlite") as connection:
+    @classmethod
+    def read(cls, id=None):
+        with sqlite3.connect(PATH_TO_DB) as connection:
             cursor = connection.cursor()
             if id:
-                query = f"SELECT (id,candidate_id) FROM {self.__class__.TABLE_NAME} WHERE id=?"
-
-                result = cursor.execute(query, (id, )).fetchone()
-
-                voters = __class__(candidate_id=result[1])
-                voters.id = result[0]
-
-                return voters
+                query = f"SELECT id, candidate_id FROM {cls.TABLE_NAME} WHERE id=?"
+                result = cursor.execute(query, (id,)).fetchone()
+                if result:
+                    return cls(id=result[0], candidate_id=result[1])
             else:
-                query = f"SELECT (id,candidate_id ) FROM {self.__class__.TABLE_NAME}"
+                query = f"SELECT id, candidate_id FROM {cls.TABLE_NAME}"
                 results = cursor.execute(query).fetchall()
-                voters = []
-
+                voters_list = []
                 for result in results:
-
-                   voters = __class__(candidate_id=result[1])
-                   voters.id = result[0]
-
-                   voter.append(voters)
-                
-                return voter
+                    voter = cls(id=result[0], candidate_id=result[1])
+                    voters_list.append(voter)
+                return voters_list
     
     def delete(self):
         if self.id:
-            with sqlite3.connect("db.sqlite") as connection:
+            with sqlite3.connect(PATH_TO_DB) as connection:
                 cursor = connection.cursor()
-
-                cursor.execute(f"DELETE FROM {self.__class__.TABLE_NAME} WHERE id=?", (self.id, ))
+                cursor.execute(f"DELETE FROM {self.TABLE_NAME} WHERE id=?", (self.id, ))

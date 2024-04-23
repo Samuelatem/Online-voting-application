@@ -1,0 +1,419 @@
+{
+	"info": {
+		"_postman_id": "a095ce16-6e5f-4efa-a1d4-86602382ecb0",
+		"name": "online voting system",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "candidate tests",
+			"item": [
+				{
+					"name": "read all",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"followOriginalHttpMethod": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SERVER_URL}}/candidate/read all",
+							"host": [
+								"{{SERVER_URL}}"
+							],
+							"path": [
+								"candidate",
+								"read all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "subject",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "session",
+									"value": "CA",
+									"type": "text"
+								},
+								{
+									"key": "duration",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "academic_year",
+									"value": "2023/24",
+									"type": "text"
+								},
+								{
+									"key": "files",
+									"type": "file",
+									"src": [
+										"/C:/Users/Jamie/Downloads/Nguh Prince ID recto.jpg",
+										"/C:/Users/Jamie/Downloads/Nguh Prince ID verso.jpg"
+									]
+								}
+							]
+						},
+						"url": {
+							"raw": "{{SERVER_URL}}/exams/",
+							"host": [
+								"{{SERVER_URL}}"
+							],
+							"path": [
+								"exams",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "read one",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "voters test",
+			"item": [
+				{
+					"name": "read all",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{SERVER_URL}}/voters/",
+							"host": [
+								"{{SERVER_URL}}"
+							],
+							"path": [
+								"voters",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Copy 2",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "subject",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "session",
+									"value": "CA",
+									"type": "text"
+								},
+								{
+									"key": "duration",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "academic_year",
+									"value": "2023/24",
+									"type": "text"
+								},
+								{
+									"key": "files",
+									"type": "file",
+									"src": [
+										"/C:/Users/Jamie/Downloads/Nguh Prince ID recto.jpg",
+										"/C:/Users/Jamie/Downloads/Nguh Prince ID verso.jpg"
+									]
+								}
+							]
+						},
+						"url": {
+							"raw": "{{SERVER_URL}}/voters/",
+							"host": [
+								"{{SERVER_URL}}"
+							],
+							"path": [
+								"voters",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "read one",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{SERVER_URL}}/voters/read one",
+							"host": [
+								"{{SERVER_URL}}"
+							],
+							"path": [
+								"voters",
+								"read one"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{SERVER_URL}}/voters/delete",
+							"host": [
+								"{{SERVER_URL}}"
+							],
+							"path": [
+								"voters",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "session tests",
+			"item": [
+				{
+					"name": "Create Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "subject",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "session",
+									"value": "CA",
+									"type": "text"
+								},
+								{
+									"key": "duration",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "academic_year",
+									"value": "2023/24",
+									"type": "text"
+								},
+								{
+									"key": "files",
+									"type": "file",
+									"src": [
+										"/C:/Users/Jamie/Downloads/Nguh Prince ID recto.jpg",
+										"/C:/Users/Jamie/Downloads/Nguh Prince ID verso.jpg"
+									]
+								}
+							]
+						},
+						"url": {
+							"raw": "{{SERVER_URL}}/exams/",
+							"host": [
+								"{{SERVER_URL}}"
+							],
+							"path": [
+								"exams",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "read all",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SERVER_URL}}/session/",
+							"host": [
+								"{{SERVER_URL}}"
+							],
+							"path": [
+								"session",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "read one",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{SERVER_URL}}/session/<id>",
+							"host": [
+								"{{SERVER_URL}}"
+							],
+							"path": [
+								"session",
+								"<id>"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "SERVER_URL",
+			"value": "http://127.0.0.1:5000",
+			"type": "default"
+		}
+	]
+}

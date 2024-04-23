@@ -1,28 +1,27 @@
-from models.session import session
+from models.session import Session
 
 def get_all_session():
-    session = session.read()
-
-    return [ session.toJSON() for session in session ]
+    sessions = Session.read()
+    return [sess.toJSON() for sess in sessions]
 
 def get_session_with_id(id):
-    return session.read(id).toJSON()
+    return Session.read(id).toJSON()
 
 def save_session(name, id=None):
-    if id != None:
+    if id is not None:
         # get session with id
-        session = get_session_with_id(id)
+        session = Session.read(id)
         session.name = name
-
     else:
-        session = session(name=name)
+        session = Session(name=name)
     
     session.save()
-
     return session.toJSON()
 
 def delete_session(id):
-    session = get_session_with_id(id)
-    session.delete()
-
-    return session.toJSON()
+    session = Session.read(id)
+    if session:
+        session.delete()
+        return session.toJSON()
+    else:
+        return {"message": "Session not found"}
